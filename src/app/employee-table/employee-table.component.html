@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Employee Table</h2>
+  </div>
+  <div class="panel-body">
+    <div style="margin-bottom:8px">
+      <input type="text" class="form-control" style="width:300px" (change)="search(searchText)" [(ngModel)]="searchText" placeholder="Enter value to be searched">
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Salary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees | async">
+          <td>{{employee.employee_name}}</td>
+          <td>{{employee.employee_age}}</td>
+          <!-- Change the cutomFormatter Value to "currency" or "number" below to format the Salary Column! -->
+          <td>{{employee.employee_salary|customFormatter:"currency"}}</td>
+          <td>
+            <button (click)="editEmployee(employee.id)" class="btn btn-primary btn-sm">Edit</button>
+            <button (click)="deleteEmployee(employee.id)" class="btn btn-danger btn-sm"
+              style="margin-left: 10px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
